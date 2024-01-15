@@ -8,7 +8,7 @@ import (
 )
 
 // 没有用的函数，这个函数当初的想法是，获得最小的子数组，然后将这个子数组从原数组中删除，然后继续寻找最小的子数组，但是没有动态的比较长度，所以导致错误
-func refreshArray(
+/*func refreshArray(
 	tmpArray *list.List,
 	tmpSum *int,
 	target int,
@@ -26,7 +26,7 @@ func refreshArray(
 			break
 		}
 	}
-}
+}*/
 
 // 长度最小的子数组
 func minSubArrayLen(target int, nums []int) int {
