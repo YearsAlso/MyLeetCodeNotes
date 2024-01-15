@@ -1,4 +1,4 @@
-module github.com/qq1334713380/MyLeetCodeNotes
+module github.com/YearsAlso/MyLeetCodeNotes
 
 
-go 1.19
+go 1.21
