@@ -1,7 +1,7 @@
 package LCR011
 
 // 给定一个二进制数组 nums , 找到含有相同数量的 0 和 1 的最长连续子数组，并返回该子数组的长度。
-func myFindMaxLength(nums []int) int {
+/*func myFindMaxLength(nums []int) int {
 	if len(nums) <= 0 {
 		return 0
 	}
@@ -75,7 +75,7 @@ func myFindMaxLength(nums []int) int {
 	}
 
 	return result
-}
+}*/
 
 /*
 *
@@ -118,11 +118,4 @@ func findMaxLength(nums []int) int {
 	}
 
 	return maxLength
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
 }
