@@ -3,7 +3,7 @@ package LCR008
 import (
 	"container/list"
 	"fmt"
-	"github.com/qq1334713380/MyLeetCodeNotes/utils"
+	"github.com/YearsAlso/MyLeetCodeNotes/utils"
 	"strconv"
 )
 
