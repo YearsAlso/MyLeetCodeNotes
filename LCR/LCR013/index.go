@@ -1,7 +1,5 @@
 package LCR013
 
-import "fmt"
-
 /*
 给定一个二维矩阵 matrix，以下类型的多个请求：
 
@@ -17,21 +15,26 @@ type NumMatrix struct {
 }
 
 func Constructor(matrix [][]int) NumMatrix {
-	return NumMatrix{matrix: matrix}
+
+	yLength := len(matrix)
+	if yLength == 0 {
+		return NumMatrix{}
+	}
+
+	xLength := len(matrix[0])
+
+	sumMatrix := make([][]int, yLength+1)
+	sumMatrix[0] = make([]int, xLength+1)
+	for i := 0; i < yLength; i++ {
+		sumMatrix[i+1] = make([]int, xLength+1)
+		for j := 0; j < xLength; j++ {
+			sumMatrix[i+1][j+1] = sumMatrix[i+1][j] + sumMatrix[i][j+1] - sumMatrix[i][j] + matrix[i][j]
+		}
+	}
+
+	return NumMatrix{matrix: sumMatrix}
 }
 
 func (this *NumMatrix) SumRegion(row1 int, col1 int, row2 int, col2 int) int {
-	sum := 0
-
-	for i := row1; i <= row2; i++ {
-		for j := col1; j <= col2; j++ {
-			sum += this.matrix[i][j]
-
-			fmt.Print(this.matrix[i][j])
-			fmt.Print("; ")
-		}
-		fmt.Print("\n")
-	}
-
-	return sum
+	return this.matrix[row2+1][col2+1] - this.matrix[row1][col2+1] - this.matrix[row2+1][col1] + this.matrix[row1][col1]
 }
