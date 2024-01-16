@@ -10,5 +10,25 @@ package LCR012
 如果数组有多个中心下标，应该返回 最靠近左边 的那一个。如果数组不存在中心下标，返回 -1 。
 */
 func pivotIndex(nums []int) int {
-	return 0
+	if len(nums) == 0 {
+		return -1
+	}
+
+	sum := 0
+	sumMap := make(map[int]int)
+
+	result := -1
+	for i := 0; i < len(nums); i++ {
+		num := nums[i]
+		sumMap[i] = sum + sum
+		sum += num
+	}
+
+	for i := 0; i < len(nums); i++ {
+		if sum-nums[i] == sumMap[i] {
+			result = i
+			break
+		}
+	}
+	return result
 }
