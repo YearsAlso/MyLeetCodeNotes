@@ -34,6 +34,13 @@ func Test_maximumSwap(t *testing.T) {
 			},
 			want: 98863,
 		},
+		{
+			name: "maximumSwap case1",
+			args: args{
+				num: 1993,
+			},
+			want: 9913,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
