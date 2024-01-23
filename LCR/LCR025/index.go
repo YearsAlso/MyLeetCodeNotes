@@ -31,20 +31,28 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 
 	add := 0
 
-	for i = l - 1; i >= 0; i-- {
+	for i := 0; i < l; i++ {
 		num := 0
+		i1 := len(num1List) - 1 - i
+		i2 := len(num2List) - 1 - i
 		if i < len(num1List) && i < len(num2List) {
-			num = num1List[i] + num2List[i] + add
-			add = num / 10
+			num = num1List[i1] + num2List[i2] + add
 		} else if i < len(num1List) {
-			num = num1List[i] + add
-			add = num / 10
+			num = num1List[i1] + add
 		} else if i < len(num2List) {
-			num = num2List[i] + add
-			add = num / 10
+			num = num2List[i2] + add
 		}
+		add = num / 10
+		num = num % 10
 		result = &ListNode{
 			Val:  num,
+			Next: result,
+		}
+	}
+
+	if add != 0 {
+		result = &ListNode{
+			Val:  add,
 			Next: result,
 		}
 	}
@@ -64,4 +72,11 @@ func convertToNumber(l *ListNode) []int {
 	}
 
 	return result
+}
+
+func AddTwoNumbers(l1 *ListNode, l2 *ListNode) []int {
+	// 转换成数组
+	result := addTwoNumbers(l1, l2)
+
+	return definition.GetArray(result)
 }

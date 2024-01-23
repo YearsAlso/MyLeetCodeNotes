@@ -12,4 +12,39 @@ type Node = definition.DoublyLinkedNode
 
 func flatten(root *Node) *Node {
 
+	result := root
+
+	for result != nil {
+		if result.Child != nil {
+			child := result.Child
+			for child.Next != nil {
+				child = child.Next
+			}
+			child.Next = result.Next
+			if result.Next != nil {
+				result.Next.Prev = child
+			}
+			result.Next = result.Child
+			result.Child.Prev = result
+			result.Child = nil
+		}
+		result = result.Next
+	}
+
+	return root
+
+}
+
+func Flatten(root *Node) []int {
+
+	result := flatten(root)
+
+	var list []int
+
+	for result != nil {
+		list = append(list, result.Val)
+		result = result.Next
+	}
+
+	return list
 }
