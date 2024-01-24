@@ -1,7 +1,5 @@
 package maximumSumOfHeights
 
-import "fmt"
-
 /*
 给你一个长度为 n 下标从 0 开始的整数数组 maxHeights 。
 
@@ -51,17 +49,14 @@ func getResultByIndex(srcHeights []int, maxIndex int) int64 {
 	pre := maxValue
 	for i := maxIndex - 1; i >= 0; i-- {
 		pre = min(pre, srcHeights[i])
-		fmt.Print(pre)
 		result += int64(pre)
 	}
 
 	suf := maxValue
 	for i := maxIndex + 1; i < len(srcHeights); i++ {
 		suf = min(srcHeights[i], suf)
-		fmt.Print(suf)
 		result += int64(suf)
 	}
 
-	fmt.Println(result)
 	return result
 }
