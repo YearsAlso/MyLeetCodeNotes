@@ -14,6 +14,7 @@ func Constructor(capacity int) LRUCache {
 		maxLength: capacity,
 		catch:     list.List{},
 		valueMap:  make([]int, 10000),
+		indexMap:  make(map[int]*list.Element),
 	}
 
 	for i := range lruCache.valueMap {
@@ -33,6 +34,10 @@ func (this *LRUCache) Get(key int) int {
 	}
 
 	element := this.indexMap[key]
+	if element == nil {
+		return -1
+	}
+
 	this.catch.MoveToFront(element)
 
 	return this.valueMap[key]
