@@ -1,5 +1,7 @@
 package deleteAndEarn
 
+import "sort"
+
 /*
 给你一个整数数组 nums ，你可以对它进行一些操作。
 
@@ -11,15 +13,25 @@ func deleteAndEarn(nums []int) int {
 	numMap := make(map[int]int)
 
 	for i := 0; i < len(nums); i++ {
-		numMap[nums[i]] = numMap[nums[i]] + 1
+		numMap[nums[i]] = numMap[nums[i]] + nums[i]
 	}
 
-	result := 0
-	for i := 0; i < len(nums); i++ {
-		num := nums[i]
-		sum := numMap[num-1]*(num-1) + numMap[num+1]*(num+1) + numMap[num]*(num)
-		result = max(sum, result)
+	// 将map 的key 转换为数组，并且排序
+	nums = []int{}
+	for k := range numMap {
+		nums = append(nums, k)
 	}
 
-	return result
+	// 排序
+	sort.Ints(nums)
+
+	prev1, prev2 := 0, numMap[nums[0]]
+
+	for i := nums[0]; i <= nums[len(nums)-1]; i++ {
+		temp := prev2
+		prev2 = max(prev1+numMap[i], prev2)
+		prev1 = temp
+	}
+
+	return max(prev1, prev2)
 }
