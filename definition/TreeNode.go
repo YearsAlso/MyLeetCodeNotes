@@ -1,5 +1,7 @@
 package definition
 
+import "fmt"
+
 // LeetCode TreeNode Definition
 
 type TreeNode struct {
@@ -26,11 +28,22 @@ func BuildByArray(array []any) *TreeNode {
 	}
 
 	for i, v := range stack {
-		if len(stack) < (i*2 + 2) {
-			break
+		if v == nil {
+			continue
+		}
+		fmt.Println(i, i*2+1, i*2+2)
+		length := len(stack) - 1
+		if (i*2 + 1) > length {
+			continue
 		}
 
 		v.Left = stack[i*2+1]
+
+		if (i*2 + 2) > length {
+			fmt.Println(i*2 + 2)
+			continue
+		}
+
 		v.Right = stack[i*2+2]
 	}
 

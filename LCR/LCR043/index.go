@@ -60,12 +60,12 @@ func (this *CBTInserter) Insert(v int) int {
 	}
 
 	if index%2 == 0 {
-		this.nodeList[index/2-1].Left = this.nodeList[index]
-		return this.nodeList[index/2-1].Val
+		this.nodeList[(index)/2].Right = this.nodeList[index]
+		return this.nodeList[(index)/2].Val
 	}
 
-	this.nodeList[index/2-1].Right = this.nodeList[index]
-	return this.nodeList[index/2-1].Val
+	this.nodeList[(index-1)/2].Left = this.nodeList[index]
+	return this.nodeList[(index+1)/2].Val
 }
 
 func (this *CBTInserter) Get_root() *TreeNode {
