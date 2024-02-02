@@ -19,6 +19,13 @@ func Test_minimumTotal(t *testing.T) {
 			},
 			want: 11,
 		},
+		{
+			name: "case1",
+			args: args{
+				triangle: [][]int{{1}, {2, 3}},
+			},
+			want: 3,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
