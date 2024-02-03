@@ -1,5 +1,7 @@
 package minimumTotal
 
+import "math"
+
 func minimumTotal(triangle [][]int) int {
 	if len(triangle) == 0 {
 		return 0
@@ -9,21 +11,24 @@ func minimumTotal(triangle [][]int) int {
 		return triangle[0][0]
 	}
 
+	minVal := math.MaxInt
 	for i := 1; i < len(triangle); i++ {
 		for j := 0; j < len(triangle[i]); j++ {
-			if j == 0 {
-				triangle[i][j] = triangle[i][j] + triangle[i-1][j]
-				continue
+			if j >= len(triangle[i-1]) {
+				triangle[i][j] += triangle[i-1][j-1]
+			} else if j == 0 {
+				triangle[i][j] += triangle[i-1][j]
+			} else {
+				triangle[i][j] += min(triangle[i-1][j-1], triangle[i-1][j])
 			}
 
-			if j == len(triangle[i])-1 {
-				triangle[i][j] = triangle[i][j] + triangle[i-1][j-1]
-				continue
+			if i == len(triangle)-1 {
+				if triangle[i][j] < minVal {
+					minVal = triangle[i][j]
+				}
 			}
-
-			triangle[i][j] = triangle[i][j] + min(triangle[i-1][j], triangle[i-1][j-1])
 		}
 	}
 
-	return triangle[len(triangle)-1][0]
+	return minVal
 }
