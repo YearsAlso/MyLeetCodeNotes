@@ -51,21 +51,20 @@ func (this *LRUCache) Put(key int, value int) {
 		return
 	}
 
-	for e := this.catch.Front(); e != nil; e = e.Next() {
-		if e.Value.(int) == key {
-			// 将当前元素移动到最前面
-			this.catch.MoveToFront(e)
-			this.indexMap[key] = this.catch.Front()
-			this.valueMap[key] = value
-			return
-		}
+	if element, ok := this.indexMap[key]; ok {
+		this.catch.MoveToFront(element)
+		this.valueMap[key] = value
+		return
 	}
 
 	if this.catch.Len() == this.maxLength {
 		// 删除最后一个元素
-		back := this.catch.Back()
-		delete(this.indexMap, back.Value.(int))
-		this.catch.Remove(back)
+		if this.catch.Len() == this.maxLength {
+			back := this.catch.Back()
+			delete(this.indexMap, back.Value.(int))
+			this.valueMap[back.Value.(int)] = -1
+			this.catch.Remove(back)
+		}
 	}
 
 	this.catch.PushFront(key)
