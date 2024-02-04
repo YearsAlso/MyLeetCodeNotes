@@ -11,13 +11,9 @@
 ``` bash 
     ├─definition  // LeetCode 中的数据结构定义
     ├─doc       // 一些文档
+    ├─DP_Base      // 动态规划基础
     ├─everyDay  // 每日一题
-    │  └─deleteDuplicates
     ├─LCR       // 119 经典题变种挑战
-    │  ├─LCR008
-    │  ├─LCR009
-    │  ├─LCR010
-    │  └─LCR011
     └─utils     // 工具类
 
 ```
@@ -25,4 +21,5 @@
 ## 说明
 
 每个题目的解题思路都会在代码中注释，如果有错误的地方，欢迎指正。 
+
 
